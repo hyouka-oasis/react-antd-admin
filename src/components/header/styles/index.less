@@ -1,0 +1,58 @@
+@import "~antd/lib/style/themes/default.less";
+
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+.ant-header {
+  z-index: 1030;
+  margin-bottom: 0;
+  height: 48px;
+  color: #666;
+  background-color: #fff;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 16px;
+  list-style: none;
+  user-select: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+
+  .ant-header-trigger{
+    padding: 0 24px 0 0;
+    font-size: 20px;
+    cursor: pointer;
+    height: 48px;
+    line-height: 48px;
+    transition: all 0.3s, padding 0s;
+  }
+
+  .ant-header-right {
+    display: flex;
+    float: right;
+    height: 48px;
+    margin-left: auto;
+    overflow: hidden;
+
+    .avatar-dropdown-action {
+      padding: 0 12px;
+    }
+
+    .avatar-dropdown {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      height: 100%;
+
+      &:hover {
+        background: @pro-header-hover-bg;
+      }
+
+      .avatar-dropdown-avatar {
+        margin: 20px 8px 20px 0;
+        vertical-align: top;
+      }
+    }
+  }
+}
