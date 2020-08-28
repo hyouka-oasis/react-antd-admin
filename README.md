@@ -142,7 +142,7 @@ $ yarn test
 ```
 
 
-### 自定义 webpack(最好不要 npm run jest 抛出webpack配置文件) 配置
+### 自定义 webpack(最好不要 npm run eject 抛出webpack配置文件) 配置
 
 请看 [customize-cra](https://github.com/arackaf/customize-cra#readme).
 
