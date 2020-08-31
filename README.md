@@ -25,11 +25,11 @@
 
 ## 线上文档(README.MD)
 
-[文档](https://github.com/HyoukaM/react-antd-admin)
+[文档](https://hyoukam.github.io/react-antd-admin/)
 
 ## 线上地址
 
-[示例](https://github.com/HyoukaM/react-antd-admin)
+[示例](https://hyoukam.github.io/react-antd-admin/build/index.html)
 
 ## 截图
 
