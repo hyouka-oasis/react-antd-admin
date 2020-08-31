@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.0ba997e8.chunk.css",
-    "main.js": "/static/js/main.e371b47f.chunk.js",
-    "main.js.map": "/static/js/main.e371b47f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.b2c0a25b.js",
-    "runtime-main.js.map": "/static/js/runtime-main.b2c0a25b.js.map",
-    "static/css/2.a54e4655.chunk.css": "/static/css/2.a54e4655.chunk.css",
-    "static/js/2.3a09cf45.chunk.js": "/static/js/2.3a09cf45.chunk.js",
-    "static/js/2.3a09cf45.chunk.js.map": "/static/js/2.3a09cf45.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.7e1501238349b5194ad07b326967c413.js": "/precache-manifest.7e1501238349b5194ad07b326967c413.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.a54e4655.chunk.css.map": "/static/css/2.a54e4655.chunk.css.map",
-    "static/css/main.0ba997e8.chunk.css.map": "/static/css/main.0ba997e8.chunk.css.map",
-    "static/js/2.3a09cf45.chunk.js.LICENSE.txt": "/static/js/2.3a09cf45.chunk.js.LICENSE.txt",
-    "static/media/Athena.jpg": "/static/media/Athena.71a0caf3.jpg"
+    "main.css": "./static/css/main.0ba997e8.chunk.css",
+    "main.js": "./static/js/main.3aaa1844.chunk.js",
+    "main.js.map": "./static/js/main.3aaa1844.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.9aa4dcad.js",
+    "runtime-main.js.map": "./static/js/runtime-main.9aa4dcad.js.map",
+    "static/css/2.54a9057b.chunk.css": "./static/css/2.54a9057b.chunk.css",
+    "static/js/2.f8c55ec0.chunk.js": "./static/js/2.f8c55ec0.chunk.js",
+    "static/js/2.f8c55ec0.chunk.js.map": "./static/js/2.f8c55ec0.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.18e708ec8aea9eb4e737d1eec2920c42.js": "./precache-manifest.18e708ec8aea9eb4e737d1eec2920c42.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.54a9057b.chunk.css.map": "./static/css/2.54a9057b.chunk.css.map",
+    "static/css/main.0ba997e8.chunk.css.map": "./static/css/main.0ba997e8.chunk.css.map",
+    "static/js/2.f8c55ec0.chunk.js.LICENSE.txt": "./static/js/2.f8c55ec0.chunk.js.LICENSE.txt",
+    "static/media/Athena.jpg": "./static/media/Athena.71a0caf3.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b2c0a25b.js",
-    "static/css/2.a54e4655.chunk.css",
-    "static/js/2.3a09cf45.chunk.js",
+    "static/js/runtime-main.9aa4dcad.js",
+    "static/css/2.54a9057b.chunk.css",
+    "static/js/2.f8c55ec0.chunk.js",
     "static/css/main.0ba997e8.chunk.css",
-    "static/js/main.e371b47f.chunk.js"
+    "static/js/main.3aaa1844.chunk.js"
   ]
 }
