@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="120" src="public/Athena.jpg">
+  <img width="120" src="https://hyoukam.github.io/react-antd-admin/public/Athena.jpg">
 </p>
 
 <p align="center">
