@@ -9,6 +9,7 @@ import {connect} from 'dva'
 import {Dispatch} from "@/utils/Effect";
 import {ConnectState} from "@/models/connect";
 import './styles/basic.less'
+import {getMenuMathKeys} from "@/utils/util";
 
 const {Content, Header} = Layout;
 
@@ -27,7 +28,7 @@ interface BasicLayoutProp {
 }
 
 const BasicLayout: React.FC<DefaultReactNodeProps & BasicLayoutProp> = (prop) => {
-    const {location, renderChildren, dispatch, menu} = prop
+    const {location, renderChildren, dispatch, menu, flatMenu} = prop
     const {children} = renderChildren
     const [collapsedLeftSide, setCollapsed] = useState<boolean>(false)
     const history = useHistory()
@@ -43,6 +44,10 @@ const BasicLayout: React.FC<DefaultReactNodeProps & BasicLayoutProp> = (prop) =>
         'fixed-breadcrumbs': theme.layout && theme.layout.indexOf('fixedBreadcrumbs') !== -1,
         'hided-breadcrumbs': theme.layout && theme.layout.indexOf('hidedBreadcrumbs') !== -1,
     })
+    const getCurrentMenu = () => {
+        return getMenuMathKeys(flatMenu, location.pathname)[0]
+    }
+
     useEffect(() => {
         (() => {
             if (!roles) {
@@ -70,7 +75,7 @@ const BasicLayout: React.FC<DefaultReactNodeProps & BasicLayoutProp> = (prop) =>
 
             <Layout>
 
-                <SlideBar menu={menu}  themeClass={theme.leftSide} collapsedLeftSide={collapsedLeftSide}/>
+                <SlideBar flatMenu={flatMenu} menu={menu} location={location} themeClass={theme.leftSide} collapsedLeftSide={collapsedLeftSide}/>
 
                 <Content style={{overflow: 'hidden'}}>
 
@@ -101,5 +106,6 @@ const BasicLayout: React.FC<DefaultReactNodeProps & BasicLayoutProp> = (prop) =>
 }
 export default connect(({global, login}: ConnectState) => ({
     menu: global.asyncMenu,
-    login
+    login,
+    ...global
 }))(BasicLayout)

@@ -2,8 +2,20 @@ import {Effect} from "@/utils/Effect";
 import {Reducer} from 'redux'
 import {getMenu} from "@/api/basicApi";
 
+const getFlatMenu = (menu: Array<MenuProp>): Array<MenuProp> => {
+    let flatMenu: Array<any> = [];
+    menu.forEach((item: MenuProp) => {
+        if (item.children && item.children.length > 0) {
+            flatMenu = flatMenu.concat(getFlatMenu(item.children))
+        }
+        flatMenu.push(item)
+    })
+    return flatMenu
+}
+
 export interface GlobalState {
-    asyncMenu: Array<RouteConfig> | []
+    asyncMenu: Array<RouteConfig> | [];
+    flatMenu: typeof getFlatMenu | Array<MenuProp>;
 }
 
 interface GlobalType {
@@ -17,10 +29,12 @@ interface GlobalType {
     }
 }
 
+
 const global: GlobalType = {
     namespace: "global",
     state: {
-        asyncMenu: []
+        asyncMenu: [],
+        flatMenu: []
     },
     effects: {
         /**
@@ -32,6 +46,17 @@ const global: GlobalType = {
          */
         * getMenu({payload}, {put, call}) {
             const menu = yield call(getMenu, payload)
+            const loopPath = (loopMenu: Array<MenuProp>, parentItem: {parentPath?: string | string[]; path?: string} = {}) => {
+                loopMenu.forEach((item: MenuProp) => {
+                    if(parentItem.path) {
+                        item.parentPath = parentItem.parentPath ? parentItem.parentPath.concat(parentItem.path) : [parentItem.path]
+                    }
+                    if(item.children && item.children.length) {
+                        loopPath(item.children, item)
+                    }
+                })
+            }
+            loopPath(menu)
             if (menu.length > 0) {
                 yield put({
                     type: 'changeMenu',
@@ -44,7 +69,8 @@ const global: GlobalType = {
         changeMenu(state, {payload}) {
             return {
                 ...state,
-                asyncMenu: payload
+                asyncMenu: payload,
+                flatMenu: getFlatMenu(payload)
             }
         }
     }

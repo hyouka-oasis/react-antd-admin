@@ -43,7 +43,7 @@ const AvatarDropdown: React.FC<{dispatch: Dispatch}> = (prop) => {
     return (
         <Dropdown overlay={menuDropdown} className='avatar-dropdown'>
             <span className='avatar-dropdown-action'>
-                <Avatar size="small" className='avatar-dropdown-avatar' src={require('../../assets/images/Athena.jpg')} alt='头像'/>
+                <Avatar size="small" className='avatar-dropdown-avatar' src='https://hyoukam.github.io/react-antd-admin/public/Athena.jpg' alt='头像'/>
                 <span>
                     {avatarName as React.ReactNode}
                 </span>

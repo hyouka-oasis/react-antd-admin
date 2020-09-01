@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import {Layout} from 'antd'
 import {Spin, Form, Input, Button, Checkbox} from 'antd'
 import './index.less'
-import Athena from '@/assets/images/Athena.jpg'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import {connect} from 'dva'
 import {ConnectState} from "@/models/connect";
@@ -33,7 +32,7 @@ const Login: React.FC<LoginProps & DefaultReactNodeProps> = (props) => {
                 <Spin tip='登陆中...' spinning={loading}>
                     <Form className="login-form" onFinish={handlerSubmit}>
                         <div className='user-img'>
-                            <img src={Athena} alt="logo"/>
+                            <img src='https://hyoukam.github.io/react-antd-admin/public/Athena.jpg' alt="logo"/>
                             <b>HYOUKA</b>
                             <span>-</span>
                             <span>Admin</span>

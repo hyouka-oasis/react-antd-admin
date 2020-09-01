@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Menu, Layout} from 'antd'
 import './styles/slider.less'
 import classnames from 'classnames'
 import {Icon} from '@/components'
+import {conversionPath, getMenuSelectKeys} from "@/utils/util";
+import {Link} from 'react-router-dom'
 
 const {Sider} = Layout
 
@@ -12,6 +14,8 @@ interface SlideBarProp {
     menu: Array<MenuProp>;
     collapsedLeftSide: boolean;
     themeClass: string;
+    flatMenu: Array<MenuProp>;
+    currentMenu?: object;
 }
 
 const RenderingIcon = (icon: string | React.ReactNode | undefined) => {
@@ -28,9 +32,36 @@ const RenderingIcon = (icon: string | React.ReactNode | undefined) => {
     return icon
 }
 
-const SlideBar: React.FC<SlideBarProp> = (prop) => {
+const SlideBar: React.FC<SlideBarProp & DefaultReactNodeProps> = (prop) => {
     const classname = classnames('sidebar-left', 'sidebar-default')
-    const {menu, collapsedLeftSide, themeClass} = prop
+    const {menu, collapsedLeftSide, themeClass, location, flatMenu, currentMenu} = prop
+    const [openKeys] = useState<object | undefined>(currentMenu || {})
+
+    const selectedKeys = getMenuSelectKeys(flatMenu, location)
+
+    const menuProps = {selectedKeys}
+
+    const getMenuPath = (route: MenuProp) => {
+        const path = conversionPath(route.path)
+        const icon = RenderingIcon(route.icon)
+        const {meta} = route
+        if(/^https?:\/\//.test(path)){
+            return(
+                <a href={path}>
+                    {icon}
+                    <span>{meta.title}</span>
+                </a>
+            )
+        }
+        return (
+            <Link to={path}
+                  replace={path === location.pathname}
+            >
+                {icon}
+                <span>{meta.title}</span>
+            </Link>
+        )
+    }
 
     const getNavMenuItem = (menuList: Array<MenuProp>) => {
         if (!menuList) {
@@ -65,8 +96,7 @@ const SlideBar: React.FC<SlideBarProp> = (prop) => {
             } else {
                 return (
                     <Item key={menuItem.path}>
-                        {menuItem.icon ? RenderingIcon(menuItem.icon) : ''}
-                        <span>{menuItem.meta.title}</span>
+                        {getMenuPath(menuItem)}
                     </Item>
                 )
             }
@@ -80,7 +110,9 @@ const SlideBar: React.FC<SlideBarProp> = (prop) => {
             .filter(item => item)
     }
 
-
+    // useEffect(() => {
+    //     setOpenKeys(getMenuSelectKeys(flatMenu, location))
+    // }, [flatMenu])
     const SliderBar: React.ReactElement = (
         <Sider width={230}
                className={classname}
@@ -89,7 +121,7 @@ const SlideBar: React.FC<SlideBarProp> = (prop) => {
         >
             <div className='slider-left-logo'>
                 <span>
-                    <img src={require('../../assets/images/Athena.jpg')} alt=""/>
+                    <img src='https://hyoukam.github.io/react-antd-admin/public/Athena.jpg' alt=""/>
                     {
                         collapsedLeftSide ? null : <h1>Hyouka Admin</h1>
                     }
@@ -98,6 +130,7 @@ const SlideBar: React.FC<SlideBarProp> = (prop) => {
             <div className='sidebar-left-content'>
                 <Menu mode="inline"
                       className={`ant-menu-${themeClass}`}
+                      {...menuProps}
                 >
                     {getNavMenuItem(menu)}
                 </Menu>
@@ -106,4 +139,5 @@ const SlideBar: React.FC<SlideBarProp> = (prop) => {
     )
     return (SliderBar)
 }
+
 export default SlideBar

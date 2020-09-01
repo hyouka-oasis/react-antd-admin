@@ -1,6 +1,6 @@
 import {createRouter} from "@/utils/core.tsx";
 import {BasicLayout, UserLayout} from '@/layout'
-import {Dashboard, Login} from "@/views";
+import {Dashboard, Login, NotFound} from "@/views";
 
 /**
  * 这里就是路由表 就不说了 这不过这里是函数return的没太大意义最关键的是下面的createRouter
@@ -20,6 +20,13 @@ const asyncRoute = (): Array<RouteConfig> => [
                 },
                 path: '/user/login',
                 component: Login
+            },
+            {
+                meta: {
+                    title: '错误页面'
+                },
+                path: '/user/notfound',
+                component: NotFound
             }
         ]
     },
@@ -29,13 +36,20 @@ const asyncRoute = (): Array<RouteConfig> => [
         meta: {
             title: '首页'
         },
-        redirect: '/dashboard',
+        redirect: '/dashboard1',
         children: [
             {
                 meta: {
                   title: '默认页'
                 },
                 path: '/dashboard',
+                component: Dashboard,
+            },
+            {
+                meta: {
+                    title: '默认页1'
+                },
+                path: '/dashboard1',
                 component: Dashboard,
             }
         ]

@@ -7,14 +7,17 @@ export const getMenu = (): Promise<Array<MenuProp>> => {
                 },
                 path: '/dashboard',
                 icon: 'DashboardOutlined',
+                children: [
+                    {
+                        meta: {
+                            title: '首页1',
+                        },
+                        path: '/dashboard1',
+                        icon: 'DashboardOutlined',
+                    },
+                ]
             },
-            {
-                meta: {
-                    title: '首页1',
-                },
-                path: '/dashboard1',
-                icon: 'DashboardOutlined',
-            },
+
         ]
         resolve(menu)
     })

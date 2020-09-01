@@ -21,7 +21,7 @@ const BreadcrumbAvatar: React.FC<DefaultReactNodeProps> = (prop) => {
     const [currentRoute, setCurrentRoute] = useState<Array<any>>([])
     useEffect(() => {
         setCurrentRoute(getRouterPath(location.pathname))
-    },[])
+    },[location])
     return (
        <div>
            {

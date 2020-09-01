@@ -22,6 +22,7 @@ interface MenuProp {
     redirect?: string;
     icon?: string | React.ReactNode;
     meta?: any;
-    hidden?: boolean
+    hidden?: boolean;
+    parentPath?: string | string[];
 }
 
