@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router} from 'react-router-dom'
+import {HashRouter, Router} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import '@/assets/styles/index.less'
 import createRoutes from "@/router/routes";
@@ -11,9 +11,13 @@ const app = dva({history})
 app.model(require('@/models/login').default)
 app.model(require('@/models/global').default)
 
-app.router(({history}: any) => {
+app.router(() => {
     return(
-        <Router history={history}>{createRoutes()}</Router>
+        <HashRouter>
+            <Router history={history}>
+                {createRoutes()}
+            </Router>
+        </HashRouter>
     )
 })
 

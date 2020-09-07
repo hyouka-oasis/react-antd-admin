@@ -75,7 +75,7 @@ const BasicLayout: React.FC<DefaultReactNodeProps & BasicLayoutProp> = (prop) =>
 
             <Layout>
 
-                <SlideBar flatMenu={flatMenu} menu={menu} location={location} themeClass={theme.leftSide} collapsedLeftSide={collapsedLeftSide}/>
+                <SlideBar collapsed={collapsedLeftSide} currentMenu={getCurrentMenu()} flatMenu={flatMenu} menu={menu} location={location} themeClass={theme.leftSide} collapsedLeftSide={collapsedLeftSide}/>
 
                 <Content style={{overflow: 'hidden'}}>
 

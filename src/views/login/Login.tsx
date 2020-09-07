@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps & DefaultReactNodeProps> = (props) => {
             type: 'login/Login',
             payload: {...values}
         })
-        setLoading(true)
+        setLoading(false)
     }
     return(
         <Layout className="full-layout login-page">

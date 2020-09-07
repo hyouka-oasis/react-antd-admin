@@ -10,12 +10,16 @@ const {Sider} = Layout
 
 const {SubMenu, Item} = Menu
 
+
+
 interface SlideBarProp {
     menu: Array<MenuProp>;
-    collapsedLeftSide: boolean;
     themeClass: string;
     flatMenu: Array<MenuProp>;
-    currentMenu?: object;
+    currentMenu: {
+        parentPath: string[]
+    };
+    collapsed: boolean;
 }
 
 const RenderingIcon = (icon: string | React.ReactNode | undefined) => {
@@ -33,20 +37,20 @@ const RenderingIcon = (icon: string | React.ReactNode | undefined) => {
 }
 
 const SlideBar: React.FC<SlideBarProp & DefaultReactNodeProps> = (prop) => {
-    const classname = classnames('sidebar-left', 'sidebar-default')
-    const {menu, collapsedLeftSide, themeClass, location, flatMenu, currentMenu} = prop
-    const [openKeys] = useState<object | undefined>(currentMenu || {})
 
+    const classname = classnames('sidebar-left', 'sidebar-default')
+    const {menu, collapsed, themeClass, location, flatMenu, currentMenu} = prop
+    const [openKeys, setOpenKeys] = useState<string[] | undefined>([])
     const selectedKeys = getMenuSelectKeys(flatMenu, location)
 
-    const menuProps = {selectedKeys}
+    const menuProps = collapsed ? {selectedKeys} : {selectedKeys, openKeys}
 
     const getMenuPath = (route: MenuProp) => {
         const path = conversionPath(route.path)
         const icon = RenderingIcon(route.icon)
         const {meta} = route
-        if(/^https?:\/\//.test(path)){
-            return(
+        if (/^https?:\/\//.test(path)) {
+            return (
                 <a href={path}>
                     {icon}
                     <span>{meta.title}</span>
@@ -110,25 +114,30 @@ const SlideBar: React.FC<SlideBarProp & DefaultReactNodeProps> = (prop) => {
             .filter(item => item)
     }
 
-    // useEffect(() => {
-    //     setOpenKeys(getMenuSelectKeys(flatMenu, location))
-    // }, [flatMenu])
+    const handlerOpenKeys = (openKeys?: string[]) => {
+        setOpenKeys(openKeys)
+    }
+    useEffect(() => {
+        setOpenKeys(currentMenu ? currentMenu.parentPath : [])
+    }, [currentMenu])
+
     const SliderBar: React.ReactElement = (
         <Sider width={230}
                className={classname}
                trigger={null}
-               collapsed={collapsedLeftSide}
+               collapsed={collapsed}
         >
             <div className='slider-left-logo'>
                 <span>
                     <img src='https://hyoukam.github.io/react-antd-admin/public/Athena.jpg' alt=""/>
                     {
-                        collapsedLeftSide ? null : <h1>Hyouka Admin</h1>
+                        collapsed ? null : <h1>Hyouka Admin</h1>
                     }
                 </span>
             </div>
             <div className='sidebar-left-content'>
                 <Menu mode="inline"
+                      onOpenChange={keys => handlerOpenKeys(keys as string[])}
                       className={`ant-menu-${themeClass}`}
                       {...menuProps}
                 >

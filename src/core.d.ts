@@ -26,3 +26,18 @@ interface MenuProp {
     parentPath?: string | string[];
 }
 
+type ObjectAsync<T> = {
+    [key: string]: T
+}
+type ChartsConfig = {
+    width?: number | 400;
+    height?: number | 400;
+    padding?: string;
+    data: Array<ObjectAsync<string | number>>;
+    forceFit?: boolean;
+    xField: string;
+    yField: string;
+    smooth?: boolean;
+    xAxis?: ObjectAsync<any>;
+    yAxis?: ObjectAsync<any>;
+}

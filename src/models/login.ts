@@ -39,13 +39,13 @@ const loginModel: LoginType = {
             if(Object.keys(response).length > 0) {
                 const {roles} = response
                 yield setStorage('roles', roles)
-                yield history.replace({
+                yield history.push({
                     pathname: '/'
                 })
             }
         },
         * Logout() {
-            yield history.replace({
+            yield history.push({
                 pathname: '/user/login'
             })
             yield clearStotage()

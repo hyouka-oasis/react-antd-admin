@@ -1,0 +1,46 @@
+.dashboard-component {
+  & .ant-card-body {
+    padding: 20px 24px 8px;
+
+    .dashboard-component-chart-top-index {
+      position: relative;
+      height: 22px;
+      color: rgba(0, 0, 0, .45);
+      font-size: 14px;
+      line-height: 22px;
+
+      .dashboard-component-chart-top-index-tooltip {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      svg {
+        cursor: pointer;
+        float: right;
+      }
+    }
+
+    .dashboard-component-chart-statistic {
+      height: 38px;
+      margin-top: 4px;
+      color: rgba(0, 0, 0, .85);
+      line-height: 38px;
+      font-size: 30px;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
+    }
+
+    .dashboard-component-chart {
+      margin: -12px -24px;
+    }
+
+    .dashboard-component-footer {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 9px;
+      margin-top: 8px;
+    }
+  }
+}

@@ -25,7 +25,7 @@ const asyncRoute = (): Array<RouteConfig> => [
                 meta: {
                     title: '错误页面'
                 },
-                path: '/user/notfound',
+                path: '*',
                 component: NotFound
             }
         ]
@@ -36,7 +36,7 @@ const asyncRoute = (): Array<RouteConfig> => [
         meta: {
             title: '首页'
         },
-        redirect: '/dashboard1',
+        redirect: '/dashboard',
         children: [
             {
                 meta: {
@@ -47,11 +47,11 @@ const asyncRoute = (): Array<RouteConfig> => [
             },
             {
                 meta: {
-                    title: '默认页1'
+                    title: '错误'
                 },
-                path: '/dashboard1',
-                component: Dashboard,
-            }
+                path: '*',
+                component: NotFound,
+            },
         ]
     }
 ]

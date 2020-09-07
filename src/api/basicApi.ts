@@ -3,19 +3,10 @@ export const getMenu = (): Promise<Array<MenuProp>> => {
         const menu = [
             {
                 meta: {
-                    title: '首页',
+                    title: '默认页',
                 },
                 path: '/dashboard',
                 icon: 'DashboardOutlined',
-                children: [
-                    {
-                        meta: {
-                            title: '首页1',
-                        },
-                        path: '/dashboard1',
-                        icon: 'DashboardOutlined',
-                    },
-                ]
             },
 
         ]

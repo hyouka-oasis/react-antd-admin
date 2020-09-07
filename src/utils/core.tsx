@@ -7,13 +7,14 @@ window.hyoukaRouterPath = {}
 function setDocumentTitle(title: string) {
     document.title = `Hyouka-${title}`
 }
+
 /**
  * 创建路由组件
  * @param routeConfig
  */
 const createRoute = (routeConfig: Function) => {
     const {path, component: Com, redirect, meta, icon, ...arg} = routeConfig()
-    if(path && path !== '/') {
+    if (path && path !== '/') {
         window.hyoukaRouterPath[path] = {path, meta, ...arg}
     }
 
@@ -21,13 +22,16 @@ const createRoute = (routeConfig: Function) => {
         arg.children = arg.children.map((route: RouteConfig) => {
             return createRoute(() => route)
         })
-        arg.children.unshift(<Redirect to={redirect} from={path} key={`${path}_redirect`} exact/>)
+        arg.children.unshift(
+            <Redirect to={redirect} from={path} key={`${path}_redirect`} exact/>
+        )
     }
     const route = {
         key: path || _.random(),
         render: ({...prop}) => {
             setDocumentTitle(meta.title)
-            return (<Com renderChildren={arg} {...prop}/>)}
+            return (<Com renderChildren={arg} {...prop}/>)
+        }
     }
     return <Route path={path} {...route}/>
 }
@@ -46,5 +50,5 @@ export const createRouter = (routerConfig: Function) => {
             return p.concat(n);
         }
     }, []);
-    return<Switch>{routes}</Switch>
+    return <Switch>{routes}</Switch>
 }

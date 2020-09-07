@@ -1,7 +1,7 @@
 import {createBrowserHistory} from 'history'
 
 const options = {
-    basename: '/'
+    basename: '#/'
 }
 
 if ((window as any).routerBase) {
