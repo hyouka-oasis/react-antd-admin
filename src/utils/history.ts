@@ -1,14 +1,14 @@
-import {createBrowserHistory} from 'history'
+import {createHashHistory} from 'history'
 
 const options = {
-    basename: '#/'
+    basename: '/'
 }
 
 if ((window as any).routerBase) {
     options.basename = (window as any).routerBase;
 }
 
-const history = createBrowserHistory(options)
+const history = createHashHistory(options)
 
 export {
     history
