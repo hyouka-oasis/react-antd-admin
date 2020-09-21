@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Layout} from 'antd'
 import {Spin, Form, Input, Button, Checkbox} from 'antd'
 import './index.less'
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {connect} from 'dva'
 import {ConnectState} from "@/models/connect";
 import {Dispatch} from "@/utils/Effect";
@@ -18,7 +18,7 @@ const {Item} = Form
 
 const Login: React.FC<LoginProps & DefaultReactNodeProps> = (props) => {
     const [loading, setLoading] = useState<boolean>(false)
-    const handlerSubmit = (values: {username:  "admin" | "user" | "Hyouka"; password: string}) => {
+    const handlerSubmit = (values: { username: "admin" | "user" | "Hyouka"; password: string }) => {
         const {dispatch} = props
         dispatch({
             type: 'login/Login',
@@ -26,7 +26,7 @@ const Login: React.FC<LoginProps & DefaultReactNodeProps> = (props) => {
         })
         setLoading(false)
     }
-    return(
+    return (
         <Layout className="full-layout login-page">
             <Content>
                 <Spin tip='登陆中...' spinning={loading}>
@@ -37,17 +37,17 @@ const Login: React.FC<LoginProps & DefaultReactNodeProps> = (props) => {
                             <span>-</span>
                             <span>Admin</span>
                         </div>
-                        <Item name='username' rules={[{ required: true, message: '请输入您的用户名，示例admin' }]}>
+                        <Item name='username' rules={[{required: true, message: '请输入您的用户名，示例admin'}]}>
                             <Input
                                 size="large"
-                                prefix={<UserOutlined />}
+                                prefix={<UserOutlined/>}
                                 placeholder="用户名"
                             />
                         </Item>
-                        <Item name='password' rules={[{ required: true, message: '请输入您的密码，示例admin' }]}>
+                        <Item name='password' rules={[{required: true, message: '请输入您的密码，示例admin'}]}>
                             <Input
                                 size="large"
-                                prefix={<LockOutlined />}
+                                prefix={<LockOutlined/>}
                                 type="password"
                                 placeholder="密码"
                             />
@@ -72,6 +72,8 @@ const Login: React.FC<LoginProps & DefaultReactNodeProps> = (props) => {
         </Layout>
     )
 }
-export default connect(({ login }: ConnectState) => ({
-    formLogin: login,
-}))(Login);
+export default connect(
+    ({login}: ConnectState) => ({
+        formLogin: login,
+    })
+)(Login);

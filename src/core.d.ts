@@ -38,6 +38,7 @@ type ChartsConfig = {
     xField: string;
     yField: string;
     smooth?: boolean;
+    title?: any,
     xAxis?: ObjectAsync<any>;
     yAxis?: ObjectAsync<any>;
 }
